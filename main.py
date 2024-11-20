@@ -25,3 +25,20 @@ class Tank:
             target.take_damage(self.damage)
         else:
             print(f"{self.name} уничтожен и не может стрелять!")
+
+class HeavyTank(Tank):
+    def __init__(self, name):
+        super().__init__(name, armor=25, damage=60, health=300)
+        self.shield_active = False
+
+    def activate_shield(self):
+        if self.is_alive:
+            self.shield_active = True
+            self.armor *= 2
+            print(f"{self.name} активировал щит! Броня удвоена!")
+
+    def deactivate_shield(self):
+        if self.shield_active:
+            self.shield_active = False
+            self.armor //= 2
+            print(f"{self.name} деактивировал щит!")
