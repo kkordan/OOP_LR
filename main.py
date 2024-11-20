@@ -42,3 +42,19 @@ class HeavyTank(Tank):
             self.shield_active = False
             self.armor //= 2
             print(f"{self.name} деактивировал щит!")
+
+class LightTank(Tank):
+    def __init__(self, name):
+        super().__init__(name, armor=10, damage=40, health=150)
+        self.dodges_left = 3
+
+    def dodge(self, damage):
+        if self.dodges_left > 0 and self.is_alive:
+            self.dodges_left -= 1
+            print(f"{self.name} уклонился от атаки! Осталось уклонений: {self.dodges_left}")
+            return True
+        return False
+
+    def take_damage(self, damage):
+        if not self.dodge(damage):
+            super().take_damage(damage)
