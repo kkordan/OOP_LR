@@ -1,3 +1,4 @@
+
 class Tank:
     def __init__(self, name, armor, damage, health):
         self.name = name
@@ -58,3 +59,26 @@ class LightTank(Tank):
     def take_damage(self, damage):
         if not self.dodge(damage):
             super().take_damage(damage)
+
+
+def main():
+    heavy_tank = HeavyTank("Тигр")
+    light_tank = LightTank("Т-34")
+
+
+    print("--- Начало боя ---")
+
+    heavy_tank.shoot(light_tank)
+    light_tank.shoot(heavy_tank)
+
+    heavy_tank.activate_shield()
+    light_tank.shoot(heavy_tank)
+
+    heavy_tank.shoot(light_tank)
+    heavy_tank.shoot(light_tank)
+
+    print("--- Конец боя ---")
+
+
+if __name__ == "__main__":
+    main()
